@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Creator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"], textarea {
+            width: 300px;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>File Creator</h1>
+
+    <!-- ฟอร์มสำหรับสร้างไฟล์ -->
+    <form action="/create-file" method="POST">
+        <label for="filename">ชื่อไฟล์ (เช่น myfile.txt):</label><br>
+        <input type="text" id="filename" name="filename" required placeholder="ชื่อไฟล์"><br><br>
+        
+        <label for="content">เนื้อหาในไฟล์:</label><br>
+        <textarea id="content" name="content" rows="5" required placeholder="ใส่เนื้อหา..."></textarea><br><br>
+        
+        <button type="submit">สร้างไฟล์</button>
+    </form>
+
+    <!-- แสดงรายการไฟล์ -->
+    <h2>รายการไฟล์</h2>
+    <ul>
+        {% for file in files %}
+        <li>
+            <a href="/file/{{ file }}">{{ file }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
